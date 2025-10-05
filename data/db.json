@@ -1,0 +1,1410 @@
+{
+  "products": [
+    {
+      "id": "prod_14kg",
+      "name": "14.2kg",
+      "unitCost": 855.5
+    },
+    {
+      "id": "prod_10kg",
+      "name": "10kg",
+      "unitCost": 611.5
+    },
+    {
+      "id": "prod_19kg",
+      "name": "19kg",
+      "unitCost": 1704
+    },
+    {
+      "id": "prod_5kg",
+      "name": "5kg",
+      "unitCost": 538
+    },
+    {
+      "id": "prod_47_5kg",
+      "name": "47.5kg",
+      "unitCost": 4700
+    }
+  ],
+  "employees": [
+    {
+      "id": "emp_01",
+      "name": "BANWARI ",
+      "phone": "9876543210",
+      "status": "active",
+      "joinDate": "2022-01-15",
+      "avatarUrl": "https://picsum.photos/seed/1/40/40",
+      "birthday": "1990-05-20",
+      "designation": ""
+    },
+    {
+      "id": "emp_02",
+      "name": "DINESH ",
+      "phone": "9876543211",
+      "status": "active",
+      "joinDate": "2022-03-22",
+      "avatarUrl": "https://picsum.photos/seed/2/40/40",
+      "birthday": "1992-08-12",
+      "designation": ""
+    },
+    {
+      "id": "emp_03",
+      "name": "SURYA ",
+      "phone": "9876543212",
+      "status": "inactive",
+      "joinDate": "2021-11-30",
+      "avatarUrl": "https://picsum.photos/seed/3/40/40",
+      "birthday": "1988-11-25",
+      "designation": ""
+    },
+    {
+      "id": "emp_04",
+      "name": "RAM MURTHY ",
+      "phone": "9876543213",
+      "status": "active",
+      "joinDate": "2023-02-10",
+      "avatarUrl": "https://picsum.photos/seed/4/40/40",
+      "birthday": "1995-02-18",
+      "designation": ""
+    },
+    {
+      "id": "emp_05",
+      "name": "David Williams",
+      "phone": "9876543214",
+      "status": "active",
+      "joinDate": "2023-05-19",
+      "avatarUrl": "https://picsum.photos/seed/5/40/40",
+      "birthday": "1993-07-30"
+    },
+    {
+      "id": "emp_06",
+      "name": "Sarah Brown",
+      "phone": "9876543215",
+      "status": "active",
+      "joinDate": "2023-06-01",
+      "avatarUrl": "https://picsum.photos/seed/6/40/40",
+      "birthday": "1991-09-05"
+    },
+    {
+      "id": "emp_07",
+      "name": "Michael Davis",
+      "phone": "9876543216",
+      "status": "inactive",
+      "joinDate": "2022-08-14",
+      "avatarUrl": "https://picsum.photos/seed/7/40/40",
+      "birthday": "1989-12-15"
+    },
+    {
+      "id": "emp_08",
+      "name": "Emily Wilson",
+      "phone": "9876543217",
+      "status": "active",
+      "joinDate": "2023-09-20",
+      "avatarUrl": "https://picsum.photos/seed/8/40/40",
+      "birthday": "1996-04-22"
+    }
+  ],
+  "dailyRecords": [
+    {
+      "date": "2025-10-05",
+      "entries": [
+        {
+          "employeeId": "emp_01",
+          "products": {
+            "prod_14kg": {
+              "fullGiven": 2,
+              "emptyCollected": 2,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_10kg": {
+              "fullGiven": 5,
+              "emptyCollected": 5,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_19kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_5kg": {
+              "fullGiven": 10,
+              "emptyCollected": 8,
+              "newConnection": 1,
+              "due": 1
+            },
+            "prod_47_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 1,
+              "newConnection": 1,
+              "due": -2
+            }
+          },
+          "notes": ""
+        },
+        {
+          "employeeId": "emp_02",
+          "products": {
+            "prod_14kg": {
+              "fullGiven": 6,
+              "emptyCollected": 4,
+              "newConnection": 1,
+              "due": 1
+            },
+            "prod_10kg": {
+              "fullGiven": 1,
+              "emptyCollected": 1,
+              "newConnection": 1,
+              "due": -1
+            },
+            "prod_19kg": {
+              "fullGiven": 1,
+              "emptyCollected": 1,
+              "newConnection": 1,
+              "due": -1
+            },
+            "prod_5kg": {
+              "fullGiven": 1,
+              "emptyCollected": 1,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_47_5kg": {
+              "fullGiven": 1,
+              "emptyCollected": 1,
+              "newConnection": 0,
+              "due": 0
+            }
+          },
+          "notes": ""
+        },
+        {
+          "employeeId": "emp_04",
+          "products": {
+            "prod_14kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_10kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_19kg": {
+              "fullGiven": 12,
+              "emptyCollected": 12,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_47_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            }
+          },
+          "notes": ""
+        },
+        {
+          "employeeId": "emp_05",
+          "products": {
+            "prod_14kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_10kg": {
+              "fullGiven": 7,
+              "emptyCollected": 6,
+              "newConnection": 1,
+              "due": 0
+            },
+            "prod_19kg": {
+              "fullGiven": 3,
+              "emptyCollected": 3,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_47_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            }
+          },
+          "notes": ""
+        },
+        {
+          "employeeId": "emp_06",
+          "products": {
+            "prod_14kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_10kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_19kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_47_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            }
+          },
+          "notes": ""
+        },
+        {
+          "employeeId": "emp_08",
+          "products": {
+            "prod_14kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_10kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_19kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            },
+            "prod_47_5kg": {
+              "fullGiven": 0,
+              "emptyCollected": 0,
+              "newConnection": 0,
+              "due": 0
+            }
+          },
+          "notes": ""
+        }
+      ]
+    }
+  ],
+  "salesRecords": [
+    {
+      "date": "2025-10-05",
+      "sales": [
+        {
+          "employeeId": "office",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 9,
+                "amount": 7699.5
+              },
+              "digital": {
+                "nos": 2,
+                "amount": 1711
+              },
+              "prepaid": {
+                "nos": 8,
+                "amount": 6844
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_01",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 7,
+                "amount": 5988.5
+              },
+              "digital": {
+                "nos": 7,
+                "amount": 5988.5
+              },
+              "prepaid": {
+                "nos": 1,
+                "amount": 855.5
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 2,
+                "amount": 1223
+              },
+              "digital": {
+                "nos": 7,
+                "amount": 4280.5
+              },
+              "prepaid": {
+                "nos": 7,
+                "amount": 4280.5
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 2,
+                "amount": 3408
+              },
+              "digital": {
+                "nos": 7,
+                "amount": 11928
+              },
+              "prepaid": {
+                "nos": 7,
+                "amount": 11928
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 7,
+                "amount": 3766
+              },
+              "digital": {
+                "nos": 7,
+                "amount": 3766
+              },
+              "prepaid": {
+                "nos": 7,
+                "amount": 3766
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 7,
+                "amount": 32900
+              },
+              "digital": {
+                "nos": 7,
+                "amount": 32900
+              },
+              "prepaid": {
+                "nos": 2,
+                "amount": 9400
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_02",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_04",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_05",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_06",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_08",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "date": "2025-10-04",
+      "sales": [
+        {
+          "employeeId": "office",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 1,
+                "amount": 611.5
+              },
+              "prepaid": {
+                "nos": 1,
+                "amount": 611.5
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 2,
+                "amount": 1076
+              },
+              "prepaid": {
+                "nos": 2,
+                "amount": 1076
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 1,
+                "amount": 4700
+              },
+              "digital": {
+                "nos": 1,
+                "amount": 4700
+              },
+              "prepaid": {
+                "nos": 1,
+                "amount": 4700
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_01",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 1,
+                "amount": 855.5
+              },
+              "digital": {
+                "nos": 2,
+                "amount": 1711
+              },
+              "prepaid": {
+                "nos": 2,
+                "amount": 1711
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 2,
+                "amount": 1223
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 2,
+                "amount": 1223
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 1,
+                "amount": 1704
+              },
+              "digital": {
+                "nos": 1,
+                "amount": 1704
+              },
+              "prepaid": {
+                "nos": 1,
+                "amount": 1704
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 1,
+                "amount": 538
+              },
+              "digital": {
+                "nos": 1,
+                "amount": 538
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_02",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 1,
+                "amount": 611.5
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_04",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_05",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_06",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        },
+        {
+          "employeeId": "emp_08",
+          "products": {
+            "prod_14kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_10kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_19kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            },
+            "prod_47_5kg": {
+              "cash": {
+                "nos": 0,
+                "amount": 0
+              },
+              "digital": {
+                "nos": 0,
+                "amount": 0
+              },
+              "prepaid": {
+                "nos": 0,
+                "amount": 0
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "expenses": [
+    {
+      "date": "2025-10-05",
+      "type": "Tea",
+      "description": "1",
+      "amount": 100,
+      "id": "exp_1759697291975",
+      "enteredBy": "Admin"
+    },
+    {
+      "date": "2025-10-05",
+      "type": "Loader",
+      "description": "",
+      "amount": 200,
+      "id": "exp_1759697297509",
+      "enteredBy": "Admin"
+    }
+  ]
+}

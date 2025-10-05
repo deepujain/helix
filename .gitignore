@@ -1,0 +1,105 @@
+# Dependencies (library files)
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+/coverage
+
+# Next.js (auto-generated)
+/.next/
+/out/
+.next
+
+# Production build (auto-generated)
+/build
+/dist
+
+# TypeScript (auto-generated)
+*.tsbuildinfo
+next-env.d.ts
+
+# Local database
+helix-db.json
+helix-db.backup.*.json
+
+# Uploaded images (user data)
+/public/images/employees/*
+!/public/images/employees/.gitkeep
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+*.sublime-workspace
+*.sublime-project
+.project
+.settings
+.classpath
+
+# Vercel deployment
+.vercel
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# Turbopack cache
+.turbo
+
+# Lock files (optional - uncomment if you don't want to commit lock files)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Temporary files
+*.tmp
+*.temp
+.cache
+
+# Backup files
+*.backup
+*.bak
+
+# Documentation builds (auto-generated)
+/docs/.vitepress/dist
+/docs/.vitepress/cache
