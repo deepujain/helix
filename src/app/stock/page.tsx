@@ -4,6 +4,7 @@
 import * as React from "react";
 import { StockTable } from "@/components/stock/stock-table";
 import { DataImportSection } from "@/components/stock/data-import-section";
+import { DailyInventorySummary } from "@/components/stock/daily-inventory-summary";
 import {
   Card,
   CardContent,
@@ -18,9 +19,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { addDays, subDays } from "date-fns";
 import { products } from "@/lib/data";
 import type { DailyRecord } from "@/lib/definitions";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 
 type InventoryData = {
   openingStock: number;
@@ -77,9 +75,39 @@ export default function StockPage() {
         const response = await fetch(`/api/stock?date=${dString}`);
         const record: DailyRecord | null = response.ok ? await response.json() : null;
         
+        // Set dailyData if record exists
+        if (record) {
+          setDailyData(record);
+        }
+        
+        // Calculate sales data from deliveries if present
+        let calculatedSales: { [key: string]: { refill: number, nc: number } } = {};
+        if (record?.deliveries) {
+          calculatedSales = record.deliveries.reduce((acc, entry) => {
+            Object.keys(entry.products).forEach(productId => {
+              if (!acc[productId]) {
+                acc[productId] = { refill: 0, nc: 0 };
+              }
+              const productSales = entry.products[productId];
+              const refillAmount = productSales.fullGiven - productSales.newConnection;
+              acc[productId].refill += refillAmount > 0 ? refillAmount : 0;
+              acc[productId].nc += productSales.newConnection;
+            });
+            return acc;
+          }, {} as { [key: string]: { refill: number, nc: number } });
+        }
+        
         // --- Full Inventory ---
-        if (record?.inventoryFull) {
-          setDailyInventory(prev => ({ ...prev, [dString]: record.inventoryFull! }));
+        if (record?.inventory?.full) {
+          // Update inventory with calculated sales values
+          const updatedInventory = { ...record.inventory.full };
+          products.forEach(p => {
+            if (updatedInventory[p.id] && calculatedSales[p.id]) {
+              updatedInventory[p.id].refill = calculatedSales[p.id].refill;
+              updatedInventory[p.id].nc = calculatedSales[p.id].nc;
+            }
+          });
+          setDailyInventory(prev => ({ ...prev, [dString]: updatedInventory }));
         } else if (!dailyInventory[dString]) {
           // Calculate from previous day
           const prevDate = new Date(date);
@@ -89,7 +117,7 @@ export default function StockPage() {
           // Try to load previous day from API
           const prevResponse = await fetch(`/api/stock?date=${prevDateString}`);
           const prevRecord: DailyRecord | null = prevResponse.ok ? await prevResponse.json() : null;
-          const prevDateInventory = prevRecord?.inventoryFull || dailyInventory[prevDateString] || {};
+          const prevDateInventory = prevRecord?.inventory?.full || dailyInventory[prevDateString] || {};
           
           const newInventoryDataForDate: InventoryFullData = {};
           products.forEach(p => {
@@ -100,16 +128,16 @@ export default function StockPage() {
             newInventoryDataForDate[p.id] = {
               openingStock: prevClosingBalance,
               received: 0,
-              refill: 0,
-              nc: 0,
+              refill: calculatedSales[p.id]?.refill || 0,
+              nc: calculatedSales[p.id]?.nc || 0,
             };
           });
           setDailyInventory(prev => ({ ...prev, [dString]: newInventoryDataForDate }));
         }
 
         // --- Empty Inventory ---
-        if (record?.inventoryEmpty) {
-          setDailyEmptyInventory(prev => ({ ...prev, [dString]: record.inventoryEmpty! }));
+        if (record?.inventory?.empty) {
+          setDailyEmptyInventory(prev => ({ ...prev, [dString]: record.inventory.empty! }));
         } else if (!dailyEmptyInventory[dString]) {
           const prevDate = new Date(date);
           prevDate.setDate(date.getDate() - 1);
@@ -117,7 +145,7 @@ export default function StockPage() {
           
           const prevResponse = await fetch(`/api/stock?date=${prevDateString}`);
           const prevRecord: DailyRecord | null = prevResponse.ok ? await prevResponse.json() : null;
-          const prevDateEmptyInventory = prevRecord?.inventoryEmpty || dailyEmptyInventory[prevDateString] || {};
+          const prevDateEmptyInventory = prevRecord?.inventory?.empty || dailyEmptyInventory[prevDateString] || {};
 
           const newEmptyInventoryData: InventoryEmptyFullData = {};
           products.forEach(p => {
@@ -185,9 +213,11 @@ export default function StockPage() {
 
         const recordToSave: DailyRecord = {
           date: dateString,
-          entries: existingRecord?.entries || dailyData?.entries || [],
-          inventoryFull: dailyInventory[dateString],
-          inventoryEmpty: dailyEmptyInventory[dateString],
+          deliveries: existingRecord?.deliveries || dailyData?.deliveries || [],
+          inventory: {
+            full: dailyInventory[dateString],
+            empty: dailyEmptyInventory[dateString],
+          },
         };
 
         const saveResponse = await fetch('/api/stock', {
@@ -214,7 +244,7 @@ export default function StockPage() {
 
   React.useEffect(() => {
     if (dailyData && dateString) {
-      const salesData = dailyData.entries.reduce((acc, entry) => {
+      const salesData = dailyData.deliveries.reduce((acc, entry) => {
           Object.keys(entry.products).forEach(productId => {
               if (!acc[productId]) {
                   acc[productId] = { refill: 0, nc: 0 };
@@ -300,173 +330,20 @@ export default function StockPage() {
       
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Inventory: Full</CardTitle>
+          <CardTitle>Stock Report</CardTitle>
           <CardDescription>
-            Daily inventory tracking for full cylinders. Closing balance is automatically carried over to the next day's opening stock.
+            Record daily stock for full and empty cylinders. Closing balances automatically carry over to the next day's opening stock.
           </CardDescription>
         </CardHeader>
         <CardContent>
-            <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[150px] border-r">Product</TableHead>
-                            <TableHead className="text-center border-r">Opening Stock</TableHead>
-                            <TableHead className="text-center">Stock Received</TableHead>
-                            <TableHead colSpan={3} className="text-center border-l">Sales</TableHead>
-                            <TableHead className="text-center border-l">Closing Balance</TableHead>
-                        </TableRow>
-                        <TableRow>
-                            <TableHead className="border-r"></TableHead>
-                            <TableHead className="border-r"></TableHead>
-                            <TableHead></TableHead>
-                            <TableHead className="text-center border-l">Refill</TableHead>
-                            <TableHead className="text-center">New Connection</TableHead>
-                            <TableHead className="text-center">Total</TableHead>
-                             <TableHead className="border-l"></TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                         {products.map(p => {
-                            const inventory = inventoryForDate[p.id] || { openingStock: 0, received: 0, refill: 0, nc: 0 };
-                            const totalSales = inventory.refill + inventory.nc;
-                            const closingBalance = inventory.openingStock + inventory.received - totalSales;
-
-                            return (
-                                <TableRow key={p.id}>
-                                    <TableCell className="font-medium border-r">{p.name}</TableCell>
-                                    <TableCell className="text-center border-r">
-                                        <Input
-                                          type="number"
-                                          readOnly
-                                          value={inventory.openingStock}
-                                          className="w-24 mx-auto text-center font-medium bg-muted/50"
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                         <Input 
-                                            type="number"
-                                            className="w-24 mx-auto text-center"
-                                            value={inventory.received}
-                                            onChange={(e) => handleInventoryFullChange(p.id, 'received', e.target.value)}
-                                        />
-                                    </TableCell>
-                                    <TableCell className="border-l">
-                                         <Input 
-                                            type="number"
-                                            readOnly
-                                            className="w-24 mx-auto text-center bg-muted/50"
-                                            value={inventory.refill}
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <Input 
-                                            type="number"
-                                            readOnly
-                                            className="w-24 mx-auto text-center bg-muted/50"
-                                            value={inventory.nc}
-                                        />
-                                    </TableCell>
-                                    <TableCell className="text-center font-medium">{totalSales}</TableCell>
-                                    <TableCell className="text-center font-bold text-lg border-l">{closingBalance}</TableCell>
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </div>
+          <DailyInventorySummary
+            inventoryFull={inventoryForDate}
+            inventoryEmpty={emptyInventoryForDate}
+            onFullChange={handleInventoryFullChange}
+            onEmptyChange={handleInventoryEmptyChange}
+          />
         </CardContent>
       </Card>
-      
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Inventory: Empty</CardTitle>
-          <CardDescription>
-            Daily inventory tracking for empty cylinders. Closing balance is automatically carried over to the next day's opening stock.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-            <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[150px] border-r">Product</TableHead>
-                            <TableHead className="text-center border-r">Opening</TableHead>
-                            <TableHead colSpan={4} className="text-center border-l">Stock</TableHead>
-                            <TableHead className="text-center border-l">Plant Dispatch</TableHead>
-                            <TableHead className="text-center border-l">Closing Balance</TableHead>
-                        </TableRow>
-                        <TableRow>
-                            <TableHead className="border-r"></TableHead>
-                            <TableHead className="border-r"></TableHead>
-                            <TableHead className="text-center border-l">Received</TableHead>
-                            <TableHead className="text-center">Transfer Out/Surrender</TableHead>
-                            <TableHead className="text-center">Defective</TableHead>
-                            <TableHead className="text-center">Total</TableHead>
-                            <TableHead className="border-l"></TableHead>
-                            <TableHead className="border-l"></TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                         {products.map(p => {
-                            const inventory = emptyInventoryForDate[p.id] || { openingStock: 0, received: 0, transferOut: 0, defective: 0, plantDispatch: 0 };
-                            const rockstarTotal = inventory.received + inventory.transferOut + inventory.defective;
-                            const closingBalance = inventory.openingStock + inventory.received - inventory.transferOut - inventory.defective - inventory.plantDispatch;
-
-                            return (
-                                <TableRow key={p.id}>
-                                    <TableCell className="font-medium border-r">{p.name}</TableCell>
-                                    <TableCell className="text-center border-r">
-                                        <Input
-                                          type="number"
-                                          readOnly
-                                          value={inventory.openingStock}
-                                          className="w-24 mx-auto text-center font-medium bg-muted/50"
-                                        />
-                                    </TableCell>
-                                    <TableCell className="border-l">
-                                         <Input 
-                                            type="number"
-                                            className="w-24 mx-auto text-center"
-                                            value={inventory.received}
-                                            onChange={(e) => handleInventoryEmptyChange(p.id, 'received', e.target.value)}
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <Input 
-                                            type="number"
-                                            className="w-24 mx-auto text-center"
-                                            value={inventory.transferOut}
-                                            onChange={(e) => handleInventoryEmptyChange(p.id, 'transferOut', e.target.value)}
-                                        />
-                                    </TableCell>
-                                     <TableCell>
-                                        <Input 
-                                            type="number"
-                                            className="w-24 mx-auto text-center"
-                                            value={inventory.defective}
-                                            onChange={(e) => handleInventoryEmptyChange(p.id, 'defective', e.target.value)}
-                                        />
-                                    </TableCell>
-                                    <TableCell className="text-center font-medium">{rockstarTotal}</TableCell>
-                                    <TableCell className="border-l">
-                                        <Input 
-                                            type="number"
-                                            className="w-24 mx-auto text-center"
-                                            value={inventory.plantDispatch}
-                                            onChange={(e) => handleInventoryEmptyChange(p.id, 'plantDispatch', e.target.value)}
-                                        />
-                                    </TableCell>
-                                    <TableCell className="text-center font-bold text-lg border-l">{closingBalance}</TableCell>
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </div>
-        </CardContent>
-      </Card>
-
 
       <Card className="mb-8">
         <CardHeader>

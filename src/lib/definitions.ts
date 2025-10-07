@@ -35,22 +35,24 @@ export type DailyStockEntry = {
 
 export type DailyRecord = {
   date: string; // YYYY-MM-DD
-  entries: DailyStockEntry[];
-  inventoryFull?: {
-    [productId: string]: {
-      openingStock: number;
-      received: number;
-      refill: number;
-      nc: number;
+  deliveries: DailyStockEntry[];
+  inventory?: {
+    full?: {
+      [productId: string]: {
+        openingStock: number;
+        received: number;
+        refill: number;
+        nc: number;
+      };
     };
-  };
-  inventoryEmpty?: {
-    [productId: string]: {
-      openingStock: number;
-      received: number;
-      transferOut: number;
-      defective: number;
-      plantDispatch: number;
+    empty?: {
+      [productId: string]: {
+        openingStock: number;
+        received: number;
+        transferOut: number;
+        defective: number;
+        plantDispatch: number;
+      };
     };
   };
 };

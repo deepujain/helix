@@ -25,7 +25,7 @@ export const officeEmployee: Employee = { id: 'office', name: 'Office', phone: '
 export const dailyRecords: DailyRecord[] = [
   {
     date: new Date().toISOString().split('T')[0],
-    entries: [
+    deliveries: [
       { employeeId: 'emp_01', products: { 'prod_5kg': { fullGiven: 10, emptyCollected: 8, newConnection: 1, due: 1 }, 'prod_10kg': { fullGiven: 5, emptyCollected: 5, newConnection: 0, due: 0 } } },
       { employeeId: 'emp_02', products: { 'prod_5kg': { fullGiven: 8, emptyCollected: 8, newConnection: 0, due: 0 }, 'prod_14kg': { fullGiven: 6, emptyCollected: 4, newConnection: 0, due: 2 } } },
       { employeeId: 'emp_04', products: { 'prod_19kg': { fullGiven: 12, emptyCollected: 12, newConnection: 0, due: 0 } } },

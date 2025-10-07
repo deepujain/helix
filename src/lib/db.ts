@@ -39,7 +39,7 @@ const defaultData: Database = {
   dailyRecords: [
     {
       date: new Date().toISOString().split('T')[0],
-      entries: [
+      deliveries: [
         { employeeId: 'emp_01', products: { 'prod_5kg': { fullGiven: 10, emptyCollected: 8, newConnection: 1, due: 1 }, 'prod_10kg': { fullGiven: 5, emptyCollected: 5, newConnection: 0, due: 0 } } },
         { employeeId: 'emp_02', products: { 'prod_5kg': { fullGiven: 8, emptyCollected: 8, newConnection: 0, due: 0 }, 'prod_14kg': { fullGiven: 6, emptyCollected: 4, newConnection: 0, due: 2 } } },
         { employeeId: 'emp_04', products: { 'prod_19kg': { fullGiven: 12, emptyCollected: 12, newConnection: 0, due: 0 } } },
@@ -56,6 +56,25 @@ const dbPath = path.join(process.cwd(), 'helix-db.json');
 
 let db: Low<Database> | null = null;
 
+// Migrate old database structure to new structure
+function migrateDailyRecords(records: any[]): DailyRecord[] {
+  return records.map(record => {
+    // Check if record uses old structure
+    if (record.entries || record.inventoryFull || record.inventoryEmpty) {
+      return {
+        date: record.date,
+        deliveries: record.entries || record.deliveries || [],
+        inventory: {
+          full: record.inventoryFull || record.inventory?.full,
+          empty: record.inventoryEmpty || record.inventory?.empty,
+        },
+      };
+    }
+    // Already using new structure
+    return record;
+  });
+}
+
 // Initialize database
 export async function initDB() {
   if (db) return db;
@@ -69,6 +88,18 @@ export async function initDB() {
   if (!db.data) {
     db.data = defaultData;
     await db.write();
+  } else {
+    // Migrate old structure to new structure
+    const needsMigration = db.data.dailyRecords.some(
+      (record: any) => record.entries || record.inventoryFull || record.inventoryEmpty
+    );
+    
+    if (needsMigration) {
+      console.log('Migrating database to new structure...');
+      db.data.dailyRecords = migrateDailyRecords(db.data.dailyRecords);
+      await db.write();
+      console.log('Migration complete!');
+    }
   }
 
   return db;

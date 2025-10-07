@@ -61,7 +61,7 @@ export function StockTable({ selectedDate, onDataChange }: StockTableProps) {
                 const newData: StockTableData = {};
 
                 activeEmployees.forEach(emp => {
-                    const existingEntry = todayRecord?.entries?.find((e: DailyStockEntry) => e.employeeId === emp.id);
+                    const existingEntry = todayRecord?.deliveries?.find((e: DailyStockEntry) => e.employeeId === emp.id);
                     newData[emp.id] = {
                         employeeId: emp.id,
                         products: {},
@@ -119,9 +119,11 @@ export function StockTable({ selectedDate, onDataChange }: StockTableProps) {
                 
                 const recordToSave: DailyRecord = {
                     date: dateString,
-                    entries: Object.values(data),
-                    inventoryFull: existingRecord?.inventoryFull,
-                    inventoryEmpty: existingRecord?.inventoryEmpty,
+                    deliveries: Object.values(data),
+                    inventory: {
+                        full: existingRecord?.inventory?.full,
+                        empty: existingRecord?.inventory?.empty,
+                    },
                 };
                 
                 const saveResponse = await fetch('/api/stock', {
