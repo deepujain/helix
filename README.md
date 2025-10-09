@@ -1,6 +1,6 @@
-# Helix - Gas Cylinder Distribution Management System
+# Helix - LPG Cylinder Distribution Management System
 
-A comprehensive local management system for gas cylinder distribution businesses. 
+A comprehensive local management system for LPG cylinder distribution businesses. 
 
 ## 🚀 Features
 
