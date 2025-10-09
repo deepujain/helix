@@ -16,6 +16,11 @@ export type Employee = {
   profilePicture?: string; // Path to uploaded profile picture
   aadharCard?: string; // Path to uploaded aadhar card
   designation?: string;
+  gender?: string;
+  address?: string;
+  trackAttendance?: boolean;
+  employmentType?: string;
+  dailyPayRate?: number;
 };
 
 export type StockEntry = {
@@ -43,6 +48,7 @@ export type DailyRecord = {
         received: number;
         refill: number;
         nc: number;
+        surrender: number;
       };
     };
     empty?: {
@@ -52,6 +58,7 @@ export type DailyRecord = {
         transferOut: number;
         defective: number;
         plantDispatch: number;
+        surrender: number;
       };
     };
   };

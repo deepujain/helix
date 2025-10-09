@@ -60,7 +60,16 @@ const generateThirtyDayData = () => {
 };
 
 const initialEmployeeData = employees.reduce((acc, emp) => {
-    acc[emp.id] = { ...emp, birthday: emp.birthday || '', designation: '' };
+    acc[emp.id] = { 
+      ...emp, 
+      birthday: emp.birthday || '', 
+      designation: emp.designation || '',
+      gender: emp.gender || '',
+      address: emp.address || '',
+      trackAttendance: emp.trackAttendance || false,
+      employmentType: emp.employmentType || '',
+      dailyPayRate: emp.dailyPayRate || 0,
+    };
     return acc;
 }, {} as any);
 
@@ -80,7 +89,16 @@ export default function EmployeeDetailPage({ params: promiseParams }: { params: 
           const allEmployees = await response.json();
           const emp = allEmployees.find((e: any) => e.id === params.id);
           if (emp) {
-            setEmployeeData({ ...emp, designation: emp.designation || '', birthday: emp.birthday || '' });
+            setEmployeeData({ 
+              ...emp, 
+              designation: emp.designation || '', 
+              birthday: emp.birthday || '',
+              gender: emp.gender || '',
+              address: emp.address || '',
+              trackAttendance: emp.trackAttendance || false,
+              employmentType: emp.employmentType || '',
+              dailyPayRate: emp.dailyPayRate || 0,
+            });
           }
         }
       } catch (error) {
@@ -350,7 +368,7 @@ export default function EmployeeDetailPage({ params: promiseParams }: { params: 
                            <div className="grid grid-cols-2 gap-4">
                              <div className="grid gap-2">
                                 <Label htmlFor="gender">Gender</Label>
-                                <Select>
+                                <Select value={employee.gender || ''} onValueChange={(value) => handleInputChange('gender', value)}>
                                     <SelectTrigger id="gender">
                                         <SelectValue placeholder="Select gender" />
                                     </SelectTrigger>
@@ -403,7 +421,7 @@ export default function EmployeeDetailPage({ params: promiseParams }: { params: 
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="address">Address</Label>
-                                <Input id="address" placeholder="123 Main St, Anytown" />
+                                <Input id="address" value={employee.address || ''} onChange={(e) => handleInputChange('address', e.target.value)} placeholder="123 Main St, Anytown" />
                             </div>
                         </CardContent>
                          <CardFooter className="justify-end">
@@ -421,14 +439,14 @@ export default function EmployeeDetailPage({ params: promiseParams }: { params: 
                                     <Label htmlFor="employment-status">Employment Status</Label>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <Switch id="track-attendance" />
+                                    <Switch id="track-attendance" checked={employee.trackAttendance || false} onCheckedChange={(checked) => handleInputChange('trackAttendance', checked)} />
                                     <Label htmlFor="track-attendance">Track Attendance</Label>
                                 </div>
                             </div>
                              <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <Label htmlFor="employment-type">Employment Type</Label>
-                                    <Select>
+                                    <Select value={employee.employmentType || ''} onValueChange={(value) => handleInputChange('employmentType', value)}>
                                         <SelectTrigger id="employment-type">
                                             <SelectValue placeholder="Select type" />
                                         </SelectTrigger>
@@ -467,7 +485,7 @@ export default function EmployeeDetailPage({ params: promiseParams }: { params: 
                             </div>
                              <div>
                                 <Label htmlFor="pay-rate">Daily Pay Rate (INR)</Label>
-                                <Input id="pay-rate" type="number" placeholder="e.g. 500" />
+                                <Input id="pay-rate" type="number" value={employee.dailyPayRate || ''} onChange={(e) => handleInputChange('dailyPayRate', Number(e.target.value))} placeholder="e.g. 500" />
                             </div>
                         </CardContent>
                          <CardFooter className="justify-end">

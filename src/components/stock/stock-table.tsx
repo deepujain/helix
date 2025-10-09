@@ -200,7 +200,7 @@ export function StockTable({ selectedDate, onDataChange }: StockTableProps) {
                     <React.Fragment key={`${p.id}-details`}>
                         <TableHead className="text-center">Full</TableHead>
                         <TableHead className="text-center">Empty</TableHead>
-                        <TableHead className="text-center">New</TableHead>
+                        <TableHead className="text-center">New/TV In</TableHead>
                         <TableHead className="text-center border-r">Due</TableHead>
                     </React.Fragment>
                     ))}

@@ -10,6 +10,7 @@ type InventoryData = {
   received: number;
   refill: number;
   nc: number;
+  surrender: number;
 };
 
 type InventoryEmptyData = {
@@ -18,6 +19,7 @@ type InventoryEmptyData = {
   transferOut: number;
   defective: number;
   plantDispatch: number;
+  surrender: number;
 };
 
 type InventoryFullData = {
@@ -56,28 +58,35 @@ export function DailyInventorySummary({
       fullField: "received" as keyof InventoryData,
       emptyField: "received" as keyof InventoryEmptyData,
       fullEditable: true,
+      emptyEditable: false,
+    },
+    { 
+      label: "Surrender", 
+      fullField: "surrender" as keyof InventoryData,
+      emptyField: "surrender" as keyof InventoryEmptyData,
+      fullEditable: true,
       emptyEditable: true,
     },
     { 
-      label: "Sales / Transfer Out", 
+      label: "Sales", 
       fullField: "refill" as keyof InventoryData,
       emptyField: "transferOut" as keyof InventoryEmptyData,
       fullEditable: false,
       emptyEditable: true,
     },
     { 
-      label: "New Connection", 
-      fullField: "nc" as keyof InventoryData,
-      emptyField: null,
-      fullEditable: false,
-      emptyEditable: false,
-    },
-    { 
-      label: "Plant Dispatch", 
+      label: "Sent to Plant", 
       fullField: null,
       emptyField: "plantDispatch" as keyof InventoryEmptyData,
       fullEditable: false,
       emptyEditable: true,
+    },
+    { 
+      label: "NC/TV In", 
+      fullField: "nc" as keyof InventoryData,
+      emptyField: null,
+      fullEditable: false,
+      emptyEditable: false,
     },
     { 
       label: "Defective", 
@@ -90,12 +99,24 @@ export function DailyInventorySummary({
 
   const getClosingBalance = (productId: string, type: 'full' | 'empty'): number => {
     if (type === 'full') {
-      const inventory = inventoryFull[productId] || { openingStock: 0, received: 0, refill: 0, nc: 0 };
-      const totalSales = inventory.refill + inventory.nc;
-      return inventory.openingStock + inventory.received - totalSales;
+      const inventory = inventoryFull[productId] || { openingStock: 0, received: 0, refill: 0, nc: 0, surrender: 0 };
+      const openingStock = Number(inventory.openingStock) || 0;
+      const received = Number(inventory.received) || 0;
+      const refill = Number(inventory.refill) || 0;
+      const nc = Number(inventory.nc) || 0;
+      const surrender = Number(inventory.surrender) || 0;
+      // Closing Balance = Opening Stock + Stock Received + Surrender - Sales - NC/TV In
+      return openingStock + received + surrender - refill - nc;
     } else {
-      const inventory = inventoryEmpty[productId] || { openingStock: 0, received: 0, transferOut: 0, defective: 0, plantDispatch: 0 };
-      return inventory.openingStock + inventory.received - inventory.transferOut - inventory.defective - inventory.plantDispatch;
+      const inventory = inventoryEmpty[productId] || { openingStock: 0, received: 0, transferOut: 0, defective: 0, plantDispatch: 0, surrender: 0 };
+      const openingStock = Number(inventory.openingStock) || 0;
+      const received = Number(inventory.received) || 0;
+      const transferOut = Number(inventory.transferOut) || 0;
+      const defective = Number(inventory.defective) || 0;
+      const plantDispatch = Number(inventory.plantDispatch) || 0;
+      const surrender = Number(inventory.surrender) || 0;
+      // Closing Balance = Opening Stock + Stock Received + Surrender - Sales - Sent to Plant + Defective
+      return openingStock + received + surrender - transferOut - plantDispatch + defective;
     }
   };
 
@@ -128,11 +149,11 @@ export function DailyInventorySummary({
                 {category.label}
               </TableCell>
               {products.map((product) => {
-                const fullInventory = inventoryFull[product.id] || { openingStock: 0, received: 0, refill: 0, nc: 0 };
-                const emptyInventory = inventoryEmpty[product.id] || { openingStock: 0, received: 0, transferOut: 0, defective: 0, plantDispatch: 0 };
+                const fullInventory = inventoryFull[product.id] || { openingStock: 0, received: 0, refill: 0, nc: 0, surrender: 0 };
+                const emptyInventory = inventoryEmpty[product.id] || { openingStock: 0, received: 0, transferOut: 0, defective: 0, plantDispatch: 0, surrender: 0 };
                 
-                const fullValue = category.fullField ? fullInventory[category.fullField] : null;
-                const emptyValue = category.emptyField ? emptyInventory[category.emptyField] : null;
+                const fullValue = category.fullField ? (fullInventory[category.fullField] ?? 0) : null;
+                const emptyValue = category.emptyField ? (emptyInventory[category.emptyField] ?? 0) : null;
 
                 return (
                   <React.Fragment key={product.id}>
