@@ -2,15 +2,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Linkedin, Twitter, Mail, BarChart, Zap, Target } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-4xl">
       <header className="text-center mb-12">
-        <div className="inline-block bg-primary text-primary-foreground rounded-lg p-3 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.75 2.25a.75.75 0 0 0-1.5 0v5.512c-1.12-.34-2.333-.34-3.453 0V2.25a.75.75 0 0 0-1.5 0v9.115a.75.75 0 0 0 .31.62c1.474.96,3.2.96,4.672 0a.75.75 0 0 0 .31-.62V2.25zM9.547 21.055a.75.75 0 0 1-.31-.62V11.25a.75.75 0 0 1 1.5 0v5.512c1.12-.34,2.333-.34,3.453 0V11.25a.75.75 0 0 1 1.5 0v9.185a.75.75 0 0 1-.31.62c-1.474.96-3.2.96-4.672 0z"/>
-            </svg>
+        <div className="inline-block mb-4">
+            <Image 
+              src="/images/1xAI.png" 
+              alt="1xAI Logo" 
+              width={120} 
+              height={120}
+              className="rounded-lg"
+            />
         </div>
         <h1 className="text-4xl font-bold tracking-tight mb-2">1xAI</h1>
         <p className="text-xl text-muted-foreground">AI-Powered Applications</p>
@@ -18,7 +23,7 @@ export default function AboutPage() {
 
       <section className="mb-12 text-center">
         <p className="text-lg max-w-3xl mx-auto">
-          1xAI is the creator of Helix, an AI-powered Stock Management application that streamlines workforce operations with intelligent automation and actionable insights.
+        1xAI is the creator of Helix, an intelligent LPG logistics and cylinder management platform that enhances inventory optimization, sales and distribution efficiency, expense governance, and workforce productivity through real-time analytics, automation, and unified supply chain visibility.
         </p>
       </section>
 
